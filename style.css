@@ -1,106 +1,114 @@
 body {
-  font-family: "Noto Serif TC", serif;
-  text-align: center;
-  background-color: #f9f0e6;
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #fdf6e3;
   margin: 0;
   padding: 0;
 }
 
-h1 {
-  color: #8b0000;
-  margin-top: 30px;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cauldron-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 .cauldron {
   width: 300px;
-  margin: 20px auto;
-  position: relative;
 }
 
-#fire {
+.fire {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: 120px;
   display: none;
 }
 
+.heat-control {
+  margin: 1rem 0;
+}
+
+.herbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 .herb-btn {
-  margin: 5px;
-  padding: 10px 15px;
-  border: 2px solid #8b0000;
-  background-color: #fff8f0;
+  padding: 0.5rem 1rem;
+  border: 2px solid #888;
+  background-color: #fff;
   cursor: pointer;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: 0.2s;
 }
 
 .herb-btn.selected {
-  background-color: #ffebcd;
-  border-color: #ff4500;
-  font-weight: bold;
+  background-color: #c6e48b;
+  border-color: #6ca430;
 }
 
-#brew-btn {
-  margin-top: 20px;
-  padding: 10px 25px;
-  font-size: 18px;
-  background-color: #8b0000;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.herb-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-#brew-btn:hover {
-  background-color: #a52a2a;
-}
-
-#heatLabel {
-  margin-left: 10px;
-  font-weight: bold;
-  color: #8b0000;
+.actions {
+  margin-bottom: 1rem;
 }
 
 #result {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #333;
-  min-height: 40px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
-/* ✅ 成功 / 失敗 GIF 動畫容器 */
-#result-overlay {
+/* 成功/失敗圖片動畫效果 */
+.result-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none; /* 讓使用者仍可點擊後面 */
   z-index: 999;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
-/* ✅ 動畫本體樣式 */
-.result-gif {
+.result-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.result-overlay img {
   width: 180px;
   height: auto;
-  animation: popin 0.2s ease-out;
+  animation: pop 0.5s ease-out;
 }
 
-/* ✅ 小彈出動畫 */
-@keyframes popin {
+@keyframes pop {
   0% {
     transform: scale(0.5);
     opacity: 0;
   }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
   100% {
     transform: scale(1);
-    opacity: 1;
   }
 }
