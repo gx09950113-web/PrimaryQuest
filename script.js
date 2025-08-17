@@ -10,6 +10,7 @@ const brewSound = document.getElementById("brewSound");
 const successSound = document.getElementById("successSound");
 const failSound = document.getElementById("failSound");
 const resultOverlay = document.getElementById("result-overlay");
+const resultImage = document.getElementById("result-image");
 
 const heatMap = {
   1: "低溫",
@@ -67,9 +68,9 @@ brewBtn.addEventListener("click", () => {
     if (correctCount < 5) {
       pills = 0;
     } else if (heat === 3) {
-      pills = Math.floor(Math.random() * 20) + 1; // 1~20
+      pills = Math.floor(Math.random() * 20) + 1;
     } else {
-      pills = Math.floor(Math.random() * 5); // 0~4
+      pills = Math.floor(Math.random() * 5);
     }
 
     let message = `你煉出了 ${pills} 顆凝血丹。`;
@@ -77,11 +78,11 @@ brewBtn.addEventListener("click", () => {
     if (pills >= 5) {
       message += " ✅ 通過考核！";
       successSound.play();
-      showResultEffect("success");
+      showResultOverlay("assets/images/O.png");
     } else {
       message += " ❌ 考核失敗。";
       failSound.play();
-      showResultEffect("fail");
+      showResultOverlay("assets/images/X.png");
     }
 
     resultDiv.textContent = message;
@@ -100,20 +101,12 @@ function setHerbButtonsDisabled(state) {
   document.querySelectorAll(".herb-btn").forEach(btn => btn.disabled = state);
 }
 
-// ✅ 顯示成功／失敗動畫 2 秒
-function showResultEffect(type) {
-  const img = document.createElement("img");
-  img.classList.add("result-gif");
-
-  if (type === "success") {
-    img.src = "assets/images/lighting.gif";
-  } else if (type === "fail") {
-    img.src = "assets/images/X.png";
-  }
-
-  resultOverlay.appendChild(img);
+function showResultOverlay(imgSrc) {
+  resultImage.src = imgSrc;
+  resultOverlay.classList.remove("hidden");
 
   setTimeout(() => {
-    resultOverlay.removeChild(img);
+    resultOverlay.classList.add("hidden");
+    resultImage.src = "";
   }, 2000);
 }
