@@ -6,11 +6,11 @@ const heatLabel = document.getElementById("heatLabel");
 const brewBtn = document.getElementById("brew-btn");
 const resultDiv = document.getElementById("result");
 const fire = document.getElementById("fire");
+const successImg = document.getElementById("success-img");
+const failImg = document.getElementById("fail-img");
 const brewSound = document.getElementById("brewSound");
 const successSound = document.getElementById("successSound");
 const failSound = document.getElementById("failSound");
-const resultOverlay = document.getElementById("result-overlay");
-const resultImage = document.getElementById("result-image");
 
 const heatMap = {
   1: "低溫",
@@ -18,16 +18,15 @@ const heatMap = {
   3: "高溫"
 };
 
-// 初始化
 heatLabel.textContent = heatMap[heatSlider.value];
 fire.style.display = "none";
+successImg.style.display = "none";
+failImg.style.display = "none";
 
-// 火候顯示
 heatSlider.addEventListener("input", () => {
   heatLabel.textContent = heatMap[heatSlider.value];
 });
 
-// 選藥材
 document.querySelectorAll(".herb-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const herb = btn.dataset.name;
@@ -43,7 +42,6 @@ document.querySelectorAll(".herb-btn").forEach(btn => {
   });
 });
 
-// 開始煉丹
 brewBtn.addEventListener("click", () => {
   if (selectedHerbs.length === 0) {
     alert("請至少選擇一種藥材！");
@@ -78,11 +76,11 @@ brewBtn.addEventListener("click", () => {
     if (pills >= 5) {
       message += " ✅ 通過考核！";
       successSound.play();
-      showResultOverlay("assets/images/O.png");
+      showFeedbackImage(successImg);
     } else {
       message += " ❌ 考核失敗。";
       failSound.play();
-      showResultOverlay("assets/images/X.png");
+      showFeedbackImage(failImg);
     }
 
     resultDiv.textContent = message;
@@ -101,12 +99,9 @@ function setHerbButtonsDisabled(state) {
   document.querySelectorAll(".herb-btn").forEach(btn => btn.disabled = state);
 }
 
-function showResultOverlay(imgSrc) {
-  resultImage.src = imgSrc;
-  resultOverlay.classList.remove("hidden");
-
+function showFeedbackImage(img) {
+  img.style.display = "block";
   setTimeout(() => {
-    resultOverlay.classList.add("hidden");
-    resultImage.src = "";
+    img.style.display = "none";
   }, 2000);
 }
