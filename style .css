@@ -1,0 +1,75 @@
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #f9f5f0;
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.cauldron-wrapper {
+  position: relative;
+  margin: 1rem auto;
+}
+
+.cauldron {
+  width: 300px;
+}
+
+.fire {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  display: none;
+  pointer-events: none;
+}
+
+.heat-control {
+  margin: 1rem 0;
+}
+
+.herbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.herb-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0c097;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.herb-btn.selected {
+  background-color: #c47850;
+  color: white;
+}
+
+.actions {
+  margin: 1.5rem 0;
+}
+
+button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  background-color: #ba5c3d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.result {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  min-height: 2rem;
+}

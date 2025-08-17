@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>下品丹師考核</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>煉丹考核：學徒 → 下品丹師</h1>
+
+    <!-- 丹爐 -->
+    <div class="cauldron-wrapper">
+      <img src="assets/images/cauldron.png" alt="丹爐" class="cauldron" />
+      <img src="assets/images/fire.gif" alt="煉丹中" id="fire" class="fire" />
+    </div>
+
+    <!-- 火候滑桿 -->
+    <div class="heat-control">
+      <label for="heat">火候：<span id="heatLabel">中溫</span></label>
+      <input type="range" id="heat" min="1" max="3" value="2" />
+    </div>
+
+    <!-- 藥材選擇 -->
+    <div class="herbs">
+      <button class="herb-btn" data-name="凝血草">🌿 凝血草</button>
+      <button class="herb-btn" data-name="靈參">🌿 靈參</button>
+      <button class="herb-btn" data-name="圓魄草">🌿 圓魄草</button>
+      <button class="herb-btn" data-name="岩獐角">🦌 岩獐角</button>
+      <button class="herb-btn" data-name="蒲公英">☘️ 蒲公英</button>
+      <button class="herb-btn" data-name="當歸">🌼 當歸</button>
+      <button class="herb-btn" data-name="玄犛肝">🐾 玄犛肝</button>
+      <button class="herb-btn" data-name="青露果">🍂 青露果</button>
+    </div>
+
+    <!-- 操作按鈕 -->
+    <div class="actions">
+      <button id="brew-btn">開始煉丹</button>
+    </div>
+
+    <!-- 結果 -->
+    <div class="result" id="result"></div>
+  </div>
+
+  <audio id="brewSound" src="assets/sounds/brewing.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
