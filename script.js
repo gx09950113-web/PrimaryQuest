@@ -53,7 +53,7 @@ brewBtn.addEventListener("click", () => {
   fire.style.display = "block";
   brewSound.currentTime = 0;
   brewSound.play();
-  resultDiv.textContent = "煉丹中...";
+  resultDiv.textContent = "火候正旺！正在凝丹⋯⋯";
 
   setTimeout(() => {
     fire.style.display = "none";
@@ -87,7 +87,7 @@ brewBtn.addEventListener("click", () => {
     resetSelection();
     brewBtn.disabled = false;
     setHerbButtonsDisabled(false);
-  }, 15000);
+  }, 8000);
 });
 
 function resetSelection() {
