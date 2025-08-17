@@ -1,92 +1,106 @@
 body {
-  font-family: "Noto Sans TC", sans-serif;
-  background-color: #f9f5f0;
-  color: #333;
+  font-family: "Noto Serif TC", serif;
   text-align: center;
-  padding: 1rem;
+  background-color: #f9f0e6;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
-}
-
-/* 🔥 丹爐與火焰區塊（重點更新） */
-.cauldron-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  margin: 1rem auto;
+h1 {
+  color: #8b0000;
+  margin-top: 30px;
 }
 
 .cauldron {
-  width: 100%;
-  display: block;
+  width: 300px;
+  margin: 20px auto;
   position: relative;
-  z-index: 1;
 }
 
-.fire {
+#fire {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -60%);
-  width: 60%;
-  z-index: 2;
+  transform: translateX(-50%);
+  width: 100px;
   display: none;
-  pointer-events: none;
-}
-
-/* 🔥 火候控制 */
-.heat-control {
-  margin: 1rem 0;
-}
-
-/* 🌿 藥材選擇 */
-.herbs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
 }
 
 .herb-btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #e0c097;
-  border-radius: 5px;
+  margin: 5px;
+  padding: 10px 15px;
+  border: 2px solid #8b0000;
+  background-color: #fff8f0;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .herb-btn.selected {
-  background-color: #c47850;
-  color: white;
+  background-color: #ffebcd;
+  border-color: #ff4500;
+  font-weight: bold;
 }
 
-.herb-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* 🧪 操作按鈕區 */
-.actions {
-  margin: 1.5rem 0;
-}
-
-button {
-  padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  background-color: #ba5c3d;
+#brew-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 18px;
+  background-color: #8b0000;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* 🧾 結果顯示 */
-.result {
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  min-height: 2rem;
+#brew-btn:hover {
+  background-color: #a52a2a;
+}
+
+#heatLabel {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+  min-height: 40px;
+}
+
+/* ✅ 成功 / 失敗 GIF 動畫容器 */
+#result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* 讓使用者仍可點擊後面 */
+  z-index: 999;
+}
+
+/* ✅ 動畫本體樣式 */
+.result-gif {
+  width: 180px;
+  height: auto;
+  animation: popin 0.2s ease-out;
+}
+
+/* ✅ 小彈出動畫 */
+@keyframes popin {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
