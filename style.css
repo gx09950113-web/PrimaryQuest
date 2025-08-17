@@ -11,28 +11,38 @@ body {
   margin: auto;
 }
 
+/* 🔥 丹爐與火焰區塊（重點更新） */
 .cauldron-wrapper {
   position: relative;
+  width: 100%;
+  max-width: 300px;
   margin: 1rem auto;
 }
 
-.cauldron, .fire {
+.cauldron {
   width: 100%;
-  max-width: 300px;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .fire {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 60%;
+  z-index: 2;
   display: none;
   pointer-events: none;
 }
 
+/* 🔥 火候控制 */
 .heat-control {
   margin: 1rem 0;
 }
 
+/* 🌿 藥材選擇 */
 .herbs {
   display: flex;
   flex-wrap: wrap;
@@ -59,6 +69,7 @@ body {
   cursor: not-allowed;
 }
 
+/* 🧪 操作按鈕區 */
 .actions {
   margin: 1.5rem 0;
 }
@@ -73,6 +84,7 @@ button {
   cursor: pointer;
 }
 
+/* 🧾 結果顯示 */
 .result {
   font-size: 1.2rem;
   margin-top: 1rem;
