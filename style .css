@@ -16,15 +16,15 @@ body {
   margin: 1rem auto;
 }
 
-.cauldron {
-  width: 300px;
+.cauldron, .fire {
+  width: 100%;
+  max-width: 300px;
 }
 
 .fire {
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
   display: none;
   pointer-events: none;
 }
@@ -52,6 +52,11 @@ body {
 .herb-btn.selected {
   background-color: #c47850;
   color: white;
+}
+
+.herb-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .actions {
