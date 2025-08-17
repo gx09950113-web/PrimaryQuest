@@ -7,6 +7,8 @@ const brewBtn = document.getElementById("brew-btn");
 const resultDiv = document.getElementById("result");
 const fire = document.getElementById("fire");
 const brewSound = document.getElementById("brewSound");
+const successSound = document.getElementById("successSound");
+const failSound = document.getElementById("failSound");
 
 const heatMap = {
   1: "低溫",
@@ -18,12 +20,12 @@ const heatMap = {
 heatLabel.textContent = heatMap[heatSlider.value];
 fire.style.display = "none";
 
-// 顯示火候文字
+// 火候顯示
 heatSlider.addEventListener("input", () => {
   heatLabel.textContent = heatMap[heatSlider.value];
 });
 
-// 藥材點選
+// 選藥材
 document.querySelectorAll(".herb-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const herb = btn.dataset.name;
@@ -70,7 +72,14 @@ brewBtn.addEventListener("click", () => {
     }
 
     let message = `你煉出了 ${pills} 顆凝血丹。`;
-    message += (pills >= 5) ? " ✅ 通過考核！" : " ❌ 考核失敗。";
+
+    if (pills >= 5) {
+      message += " ✅ 通過考核！";
+      successSound.play();
+    } else {
+      message += " ❌ 考核失敗。";
+      failSound.play();
+    }
 
     resultDiv.textContent = message;
     resetSelection();
