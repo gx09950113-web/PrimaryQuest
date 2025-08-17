@@ -14,11 +14,16 @@ const heatMap = {
   3: "高溫"
 };
 
+// 初始化
+heatLabel.textContent = heatMap[heatSlider.value];
+fire.style.display = "none";
+
+// 顯示火候文字
 heatSlider.addEventListener("input", () => {
   heatLabel.textContent = heatMap[heatSlider.value];
 });
 
-// 藥材點選邏輯
+// 藥材點選
 document.querySelectorAll(".herb-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const herb = btn.dataset.name;
@@ -34,7 +39,7 @@ document.querySelectorAll(".herb-btn").forEach(btn => {
   });
 });
 
-// 煉丹邏輯
+// 開始煉丹
 brewBtn.addEventListener("click", () => {
   if (selectedHerbs.length === 0) {
     alert("請至少選擇一種藥材！");
@@ -42,6 +47,7 @@ brewBtn.addEventListener("click", () => {
   }
 
   brewBtn.disabled = true;
+  setHerbButtonsDisabled(true);
   fire.style.display = "block";
   brewSound.currentTime = 0;
   brewSound.play();
@@ -55,7 +61,6 @@ brewBtn.addEventListener("click", () => {
     const correctCount = correctHerbs.filter(h => selectedHerbs.includes(h)).length;
 
     let pills = 0;
-
     if (correctCount < 5) {
       pills = 0;
     } else if (heat === 3) {
@@ -65,20 +70,20 @@ brewBtn.addEventListener("click", () => {
     }
 
     let message = `你煉出了 ${pills} 顆凝血丹。`;
-
-    if (pills >= 5) {
-      message += " ✅ 通過考核！";
-    } else {
-      message += " ❌ 考核失敗。";
-    }
+    message += (pills >= 5) ? " ✅ 通過考核！" : " ❌ 考核失敗。";
 
     resultDiv.textContent = message;
     resetSelection();
     brewBtn.disabled = false;
+    setHerbButtonsDisabled(false);
   }, 15000);
 });
 
 function resetSelection() {
   selectedHerbs = [];
   document.querySelectorAll(".herb-btn").forEach(btn => btn.classList.remove("selected"));
+}
+
+function setHerbButtonsDisabled(state) {
+  document.querySelectorAll(".herb-btn").forEach(btn => btn.disabled = state);
 }
