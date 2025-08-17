@@ -9,6 +9,7 @@ const fire = document.getElementById("fire");
 const brewSound = document.getElementById("brewSound");
 const successSound = document.getElementById("successSound");
 const failSound = document.getElementById("failSound");
+const resultOverlay = document.getElementById("result-overlay");
 
 const heatMap = {
   1: "低溫",
@@ -76,9 +77,11 @@ brewBtn.addEventListener("click", () => {
     if (pills >= 5) {
       message += " ✅ 通過考核！";
       successSound.play();
+      showResultEffect("success");
     } else {
       message += " ❌ 考核失敗。";
       failSound.play();
+      showResultEffect("fail");
     }
 
     resultDiv.textContent = message;
@@ -95,4 +98,22 @@ function resetSelection() {
 
 function setHerbButtonsDisabled(state) {
   document.querySelectorAll(".herb-btn").forEach(btn => btn.disabled = state);
+}
+
+// ✅ 顯示成功／失敗動畫 2 秒
+function showResultEffect(type) {
+  const img = document.createElement("img");
+  img.classList.add("result-gif");
+
+  if (type === "success") {
+    img.src = "assets/images/lighting.gif";
+  } else if (type === "fail") {
+    img.src = "assets/images/X.png";
+  }
+
+  resultOverlay.appendChild(img);
+
+  setTimeout(() => {
+    resultOverlay.removeChild(img);
+  }, 2000);
 }
